@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
+const routes =require('./routes');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -23,12 +24,7 @@ console.log('MongoDb 연결 완료')
 console.log(error)
 }
 
-const homeRouter = require('./router/routes');
-
-
-// 라우터 설정
-app.use('/', homeRouter);
-
+app.use(routes);
 
 app.listen(PORT, function(){
 console.log(`Listening on ${PORT}`);
