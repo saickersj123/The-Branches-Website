@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+}
+
+.top {
+  display: flex;
+  background-color: skyblue;
+  color: beige;
+  width: 100%;
+  padding-left: 2%;
+}
+
+.textbox {
+  width: 1000;
+  height: 1000;
+}
