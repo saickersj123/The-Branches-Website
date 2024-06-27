@@ -4,7 +4,7 @@ const router = express.Router();
 const postController = require('../controllers/postController');
 const commentController = require('../controllers/commentController');
 
-const publicPath = path.join(__dirname, '/../../../frontend/assets');
+const publicPath = path.join(__dirname, '/../../../frontend/public');
 router.use(express.static(publicPath));
 
 

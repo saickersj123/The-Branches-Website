@@ -5,7 +5,7 @@ const router = express.Router();
 
 const MemberController = require('../controllers/memberController');
 
-const publicPath = path.resolve(__dirname,  '../../../frontend/assets');
+const publicPath = path.resolve(__dirname,  '../../../frontend/public');
 router.use(express.static(publicPath));
 
 // uproad image

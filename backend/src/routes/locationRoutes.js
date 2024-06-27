@@ -4,7 +4,7 @@ const LocationController = require('../controllers/locationController');
 const router = express.Router();
 
 
-const publicPath = path.resolve(__dirname, '../../../frontend/assets');
+const publicPath = path.resolve(__dirname, '../../../frontend/public');
 
 router.get('/place', (req, res) => {
   res.sendFile(path.join(publicPath, 'members.html#meeting-place'));

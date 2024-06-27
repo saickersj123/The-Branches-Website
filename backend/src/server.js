@@ -15,9 +15,10 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-const publicPath = path.join(__dirname, '/../../frontend/assets');
-app.use(express.static(publicPath));
+const srcPath = path.join(__dirname, '/../../frontend/src');
+app.use(express.static(srcPath));
 
 
 // MongoDB 연결
@@ -33,19 +34,15 @@ try {
     console.log(error)
 }
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(publicPath, 'index.html'));
-});
-
 
 
 app.use(boardRoutes);
 app.use(memberRoutes);
 app.use(locationRoutes);
 
-//  app.get('*', (req, res) => {
-//    res.sendFile(path.join(__dirname, '/../../frontend/public/index.html'));
-//  }); 
+app.get('*', (req, res) => {
+    res.sendFile(path.join(srcPath, 'index.html'));
+});
 
 
 app.listen(PORT, function(){
