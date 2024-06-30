@@ -13,14 +13,23 @@ const storage = multer.diskStorage({
   }
 });
 
-const upload = multer({ storage: storage });
+const fileFilter = (req, file, cb) => {
+  // 이미지 파일인지 확인
+  if (file.mimetype.startsWith('image')) {
+    cb(null, true);
+  } else {
+    cb(new Error('이미지 파일만 업로드 가능합니다.'), false);
+  }
+};
+
+const upload = multer({ storage: storage, fileFilter: fileFilter });
 exports.upload = upload.single('image');
 
 // 작성
 exports.createPost = async (req, res) => {
   try {
-    const { title, content, author, imageUrl } = req.body;
-    const newPost = new Post({ title, content, author, imageUrl } ); 
+    const { title, content, imageUrl } = req.body;
+    const newPost = new Post({ title, content, imageUrl } ); 
     const savedPost = await newPost.save();
     return res.status(200).json(savedPost);
   } catch (err) {

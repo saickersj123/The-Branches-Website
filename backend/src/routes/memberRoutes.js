@@ -2,11 +2,11 @@ const express = require('express');
 const path = require('path');
 const multer = require('multer');
 const router = express.Router();
-
 const MemberController = require('../controllers/memberController');
 
-const publicPath = path.resolve(__dirname,  '../../../frontend/public');
-router.use(express.static(publicPath));
+const app = express();
+const buildPath = path.join(__dirname, '/../../frontend/build');
+app.use(express.static(buildPath));
 
 // uproad image
 const storage = multer.diskStorage({
@@ -18,10 +18,6 @@ const storage = multer.diskStorage({
   }
 })
 
-// 멤버 페이지 라우트
-router.get('/members', (req, res) => {
-  res.sendFile(path.join(publicPath, 'members.html'));
-});
 
 // member
 router.get('/member', MemberController.listMembers);

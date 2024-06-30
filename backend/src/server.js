@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const path = require('path');
 const bodyParser = require('body-parser');
 const axios = require('axios');
-const locationRoutes =require('./routes/locationRoutes');
 const boardRoutes = require('./routes/boardRoutes');
 const memberRoutes = require('./routes/memberRoutes');
 
@@ -17,8 +16,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-const srcPath = path.join(__dirname, '/../../frontend/src');
-app.use(express.static(srcPath));
+const buildPath = path.join(__dirname, '/../../frontend/build');
+app.use(express.static(buildPath));
 
 
 // MongoDB 연결
@@ -38,10 +37,10 @@ try {
 
 app.use(boardRoutes);
 app.use(memberRoutes);
-app.use(locationRoutes);
+
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(srcPath, 'index.html'));
+    res.sendFile(path.join(buildPath, 'index.html'));
 });
 
 

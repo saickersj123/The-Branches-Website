@@ -4,14 +4,15 @@ const router = express.Router();
 const postController = require('../controllers/postController');
 const commentController = require('../controllers/commentController');
 
-const publicPath = path.join(__dirname, '/../../../frontend/public');
-router.use(express.static(publicPath));
+const app = express();
+const buildPath = path.join(__dirname, '/../../frontend/build');
+app.use(express.static(buildPath));
 
-
-router.get('/projects', (req, res) => {
-    res.sendFile(path.join(publicPath, 'project_page.html'));
+app.get("/board", (req,res) => {
+    res.sendFile(path.join(buildPath, 'index.html'))
 });
 
+// notice board
 router.post('/board', postController.upload, postController.createPost);
 router.get('/board', postController.getAllPosts);
 router.put('/board/:id', postController.updatePost);
