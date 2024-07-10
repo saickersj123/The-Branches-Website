@@ -1,35 +1,13 @@
 // 게시글 작성/조회/수정/삭제
-const multer = require('multer');
 const path = require('path');
 const Post = require('../models/post');
-
-// multer 설정
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-      cb(null, './uploads/');
-  },
-  filename: (req, file, cb) => {
-      cb(null, Date.now() + path.extname(file.originalname));
-  }
-});
-
-const fileFilter = (req, file, cb) => {
-  // 이미지 파일인지 확인
-  if (file.mimetype.startsWith('image')) {
-    cb(null, true);
-  } else {
-    cb(new Error('이미지 파일만 업로드 가능합니다.'), false);
-  }
-};
-
-const upload = multer({ storage: storage, fileFilter: fileFilter });
-exports.upload = upload.single('image');
 
 // 작성
 exports.createPost = async (req, res) => {
   try {
-    const { title, content, imageUrl } = req.body;
-    const newPost = new Post({ title, content, imageUrl } ); 
+    const { title, content } = req.body;
+    const image = req.file ? req.file.path : null;
+    const newPost = new Post({ title, image, content } ); 
     const savedPost = await newPost.save();
     return res.status(200).json(savedPost);
   } catch (err) {
