@@ -3,7 +3,6 @@ import axios from 'axios';
 import Header from './Header';
 import './ProjectPage.css'; // CSS 파일을 따로 작성하여 스타일 적용
 
-
 function ProjectPage() {
   const [posts, setPosts] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
@@ -18,33 +17,31 @@ function ProjectPage() {
       const response = await axios.get('/board');
       setPosts(response.data);
     } catch (error) {
-      console.error('Erro fetching posts: ', error);
+      console.error('Error fetching posts:', error);
     }
   };
 
   const handleCreatePost = async () => {
-    
-    const formData = new FormData();
-    formData.append('title', newPost.title);
-    formData.append('image', newPost.image);
-    formData.append('content', newPost.content);
-    if (newPost.image) {
+    try {
+      const formData = new FormData();
+      formData.append('title', newPost.title);
       formData.append('image', newPost.image);
-    }
-   
-    const response = await axios.post('/board', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-    
-    const reader = new FileReader();
-    reader.onload = () => {
+      formData.append('content', newPost.content);
+
+      console.log('Form data:', formData);
+      
+      const response = await axios.post('/board', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
       setPosts([response.data, ...posts]);
       setModalOpen(false);
       setNewPost({ title: '', image: null, content: '' });
-    };
-    reader.readAsDataURL(newPost.image);
+    } catch (error) {
+      console.error('Error creating post:', error.response?.data?.message || error.message);
+    }
   };
 
   const handleDeletePost = async (id) => {
@@ -52,7 +49,16 @@ function ProjectPage() {
       await axios.delete(`/board/${id}`);
       setPosts(posts.filter(post => post._id !== id));
     } catch (error) {
-      console.error('글 삭제 오류: ', error);
+      console.error('Error deleting post:', error.response?.data?.message || error.message);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value, files } = e.target;
+    if (name === 'image') {
+      setNewPost({ ...newPost, image: files[0] });
+    } else {
+      setNewPost({ ...newPost, [name]: value });
     }
   };
 
@@ -65,12 +71,13 @@ function ProjectPage() {
           {posts.map((post) => (
             <div key={post._id} className="post">
               <header>
-                <div className="post-title">
+                <div className="title">
                   <h2>{post.title}</h2>
                   <p className="post-content">{post.content}</p>
                 </div>
               </header>
-              <a href="#" className="image featured"><img src={post.image} alt={post.title} /></a>
+              <a href="#" className="image featured">
+                <img src={post.image ? `/board/${post.image}` : ''} alt={post.title} /></a>
               <button onClick={() => handleDeletePost(post._id)}>삭제</button>
             </div>
           ))}
@@ -82,9 +89,25 @@ function ProjectPage() {
             <span className="close" onClick={() => setModalOpen(false)}>&times;</span>
             <h2>Create a New Post</h2>
             <form onSubmit={(e) => { e.preventDefault(); handleCreatePost(); }}>
-              <input type="text" placeholder="Title" value={newPost.title} onChange={(e) => setNewPost({ ...newPost, title: e.target.value })} /><br />
-              <input type="file" accept="image/*" onChange={(e) => setNewPost({ ...newPost, image: e.target.files[0] })} /><br />
-              <textarea placeholder="Content" value={newPost.content} onChange={(e) => setNewPost({ ...newPost, content: e.target.value })}></textarea><br />
+              <input 
+                type="text" 
+                name="title" 
+                placeholder="Title" 
+                value={newPost.title} 
+                onChange={handleInputChange} 
+              /><br />
+              <input 
+                type="file" 
+                name="image" 
+                accept="image/*" 
+                onChange={handleInputChange} 
+              /><br />
+              <textarea 
+                name="content" 
+                placeholder="Content" 
+                value={newPost.content} 
+                onChange={handleInputChange} 
+              ></textarea><br />
               <button type="submit">Submit</button>
             </form>
           </div>
@@ -113,3 +136,4 @@ function ProjectPage() {
 }
 
 export default ProjectPage;
+
