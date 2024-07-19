@@ -1,0 +1,37 @@
+#nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff; /* 배경색 하얀색 */
+    z-index: 1000;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  #nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 50px;
+  }
+  
+  #nav ul li {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  #nav ul li a {
+    text-decoration: none;
+    color: #000; /* 글자색 검정색 */
+    padding: 10px;
+    transition: color 0.3s, background-color 0.3s;
+  }
+  
+  #nav ul li a:hover {
+    background-color: #f0f0f0; /* 호버 시 배경색 약간 어둡게 */
+    color: #000; /* 호버 시 글자색 검정색 */
+  }
+    

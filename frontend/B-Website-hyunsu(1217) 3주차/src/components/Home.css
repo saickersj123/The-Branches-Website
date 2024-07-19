@@ -1,0 +1,28 @@
+.carousel .reel {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  
+  .carousel article {
+    flex: 0 0 auto;
+    width: 368px; /* 고정된 너비 */
+    margin: 0 10px; /* 좌우 간격 */
+  }
+  
+  .carousel .image.featured img {
+    width: 368px; /* 고정된 너비 */
+    height: 256px; /* 고정된 높이 */
+    object-fit: cover; /* 이미지가 영역을 채우도록 조정 */
+  }
+  
+  .carousel header {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .carousel p {
+    text-align: center;
+    padding: 0 10px;
+  }
+  
