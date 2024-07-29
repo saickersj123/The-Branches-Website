@@ -1,0 +1,27 @@
+/* 기존 CSS 코드 유지 */
+
+.tweet header h3 {
+  font-size: 1.2em;
+  color: #fff;
+  margin: 0;
+}
+
+.tweet .timestamp {
+  font-size: 0.8em;
+  color: #aaa;
+  display: block;
+  margin-top: 5px;
+}
+
+/* 추가된 스타일 */
+.link-style {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: default;
+  display: inline;
+  text-decoration: none;
+  padding: 0;
+}
+
