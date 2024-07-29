@@ -1,0 +1,27 @@
+/* 각 섹션의 좌우 간격을 넓히기 위한 CSS */
+#footer .row {
+  display: flex;
+  justify-content: space-between;
+}
+
+#footer .col-4 {
+  flex: 1;
+  margin-left: 20px; /* 왼쪽 마진 추가 */
+  margin-right: 20px; /* 오른쪽 마진 추가 */
+}
+
+#footer .row.gtr-25 > .col-6 {
+  padding: 10px; /* 이미지 간격 조정 */
+}
+
+@media screen and (max-width: 768px) {
+  #footer .row {
+    flex-direction: column;
+  }
+
+  #footer .col-4 {
+    margin-left: 0; /* 모바일 화면에서 왼쪽 마진 제거 */
+    margin-right: 0; /* 모바일 화면에서 오른쪽 마진 제거 */
+    margin-bottom: 30px; /* 모바일 화면에서 아래 마진 추가 */
+  }
+}
