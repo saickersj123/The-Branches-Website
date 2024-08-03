@@ -10,7 +10,7 @@ const memberRoutes = require('./routes/memberRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors({ credentials: true, origin: `http://localhost:${PORT}` }));
+app.use(cors({ credentials: true, origin: process.env.ALLOWED_ORIGIN }));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
