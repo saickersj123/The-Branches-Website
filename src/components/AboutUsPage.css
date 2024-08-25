@@ -1,0 +1,33 @@
+/* AboutUsPage.css */
+
+.about-us-page {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .members {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .member {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+  }
+  
+  .member:hover {
+    transform: scale(1.05);
+  }
+  
+  .member img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+  }
+  

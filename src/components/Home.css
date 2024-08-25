@@ -1,0 +1,141 @@
+.carousel .reel {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.carousel article {
+  flex: 0 0 auto;
+  width: 368px; /* 고정된 너비 */
+  margin: 0 10px; /* 좌우 간격 */
+}
+
+.carousel .image.featured img {
+  width: 368px; /* 고정된 너비 */
+  height: 256px; /* 고정된 높이 */
+  object-fit: cover; /* 이미지가 영역을 채우도록 조정 */
+}
+
+.carousel header {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.carousel p {
+  text-align: center;
+  padding: 0 10px;
+}
+
+.contact-section {
+  background-color: #f9f9f9;
+  padding: 4rem 0; /* 상하 패딩을 늘림 */
+  text-align: center;
+}
+
+.contact-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 -30px; /* 좌우 간격을 맞추기 위해 마이너스 마진 추가 */
+}
+
+.contact-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 50px; /* 좌우 간격 */
+  padding: 2rem; /* 내부 패딩을 줄임 */
+  width: 400px; /* 카드 너비를 늘림 */
+  height: 500px; /* 카드 높이를 추가 */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: left; /* 텍스트를 왼쪽으로 정렬 */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 카드 내부 요소들을 중앙 정렬 */
+}
+
+.contact-card h3 {
+  margin-top: 0;
+  margin-bottom: 1rem; /* 제목과 메일 텍스트 사이의 간격 */
+  font-size: 2rem; /* 제목 크기를 크게 */
+  text-align: left; /* 제목을 왼쪽으로 정렬 */
+  width: 100%; /* 제목의 너비를 100%로 설정 */
+}
+
+.contact-card p {
+  font-size: 1.5rem; /* 텍스트 크기를 늘림 */
+  margin-bottom: 1rem; /* 텍스트와 이미지 사이의 간격 */
+  margin-top: 0; /* 제목과 붙어 있도록 */
+  text-align: left; /* 텍스트를 왼쪽으로 정렬 */
+  width: 100%; /* 텍스트의 너비를 100%로 설정 */
+}
+
+.card-image {
+  width: 80%; /* 이미지가 카드의 전체 너비를 차지하도록 설정 */
+  height: auto;
+  margin-bottom: 1rem; /* 이미지와 버튼 사이의 간격 */
+  object-fit: cover; /* 이미지가 영역을 채우도록 조정 */
+}
+
+.contact-button {
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 1rem 2rem; /* 버튼 크기를 늘림 */
+  cursor: pointer;
+  font-size: 1.5rem; /* 버튼 텍스트 크기를 늘림 */
+  text-align: center; /* 버튼 텍스트를 중앙 정렬 */
+  margin-top: auto; /* 버튼을 아래로 밀어냄 */
+}
+
+.contact-button:hover {
+  background-color: #ff4b3a;
+}
+
+.link-style {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: default; /* 클릭 불가능하게 설정 */
+  text-decoration: none;
+}
+
+/* 모달 스타일 */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.modal .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #fff;
+}
